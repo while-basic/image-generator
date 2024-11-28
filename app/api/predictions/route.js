@@ -12,11 +12,27 @@ export async function POST(request) {
     );
   }
  
-  const { prompt } = await request.json();
+  const {
+    prompt,
+    negative_prompt,
+    num_inference_steps,
+    guidance_scale,
+    width,
+    height
+  } = await request.json();
  
   const prediction = await replicate.predictions.create({
-    version: "8beff3369e81422112d93b89ca01426147de542cd4684c244b673b105188fe5f",
-    input: { prompt }
+    version: "39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b",
+    input: {
+      prompt: prompt,
+      negative_prompt: negative_prompt || "",
+      num_inference_steps: parseInt(num_inference_steps),
+      guidance_scale: parseFloat(guidance_scale),
+      width: parseInt(width),
+      height: parseInt(height),
+      scheduler: "DPMSolverMultistep",
+      num_outputs: 1
+    }
   });
  
   if (prediction?.error) {
