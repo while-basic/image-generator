@@ -138,7 +138,9 @@ export default function Home() {
         </CardContent>
         <CardFooter className="justify-center">
           <p className="text-sm text-gray-500">
-            Powered by Replicate and SDXL
+            Powered by Replicate and SDX
+
+            Made by chriscelaya.com
           </p>
         </CardFooter>
       </Card>
